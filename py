@@ -1,72 +1,124 @@
+# All of the functions, lists, modules etc are collected at the top for easy access.
 import random
 import time
 
+money = 1200
+def pause():
+  time.sleep(1)
 
-# The variable for this isn't necessary, it's left behind from when I tried to stop numbers over 6
-illusionofchoice = int(input("Please pick a car, from numbers 1-6. "))
-print()
+def pause2():
+  time.sleep(2)
 
-print("Sadly, the world doesn't work that way. Sometimes we can't have what we want.")
+#Asks user for a car, ignores their choice.
+def illusionofchoice():
+  while True:
+    try:
+          illusionofchoice = int(input("Pick a car, from 1-6."))
+    except ValueError:
+          print("Please enter a valid integer")
+          continue
+    if illusionofchoice >= 1 and illusionofchoice <= 6:
+          print(f'You want car number {illusionofchoice}?')
+          break
+    else:
+          print('The integer must be in the range 1-6')
 
-# Playing around with delays
-time.sleep(1)
+def sadly():
+  print("Sadly, the world doesn't work that way. Sometimes we can't      have what we want.")
 
-# Random integers
-car = random.randint(1,6)
-carsentence = "Your car is number "+str(car)
-print()
+def car():
+  # Random integers
+  car = random.randint(1,6)
+  carsentence = "Your car is number "+str(car)
+  print()
 
-# Expanding on rand function
-mylist = ["yellow.","green.","a nice chrome.","purple???","a very specific shade of orange that cannot be described by any words known to mankind.","Ferrari Red®."]
-colour = random.choice(mylist)
-print(str(carsentence)+", and it appears to be " + str(colour))
-print()
+def colour():
+  # Expanding on rand function
+  mylist = ["yellow.","green.","a nice chrome.","purple???","a very   specific shade of orange that cannot be described by any words known to mankind.","Ferrari Red®."]
+  colour = random.choice(mylist)
+  print(str(carsentence)+", and it appears to be " + str(colour))
+  print()
 
-# Delays are good, stops a flood of text.
+# Information on bet.
+def betinfo():
+  print("Please place your bet.")
+  pause2()
+  print("You currently have $1200, from working a minimum wage job to feed your gambling addiction.")
 
-time.sleep(3)
-print("Please place your bet.")
+def bet():
+  while True:
+      try:
+          bet = int(input("How much would you like to bet? "))
+      except ValueError:
+          print("Please enter a valid integer.")
+          continue
+      if bet >= 1 and bet <= 1200:
+          print()
+          break
+      else:
+          print('The integer must be in the range $1-$'+str(money))
 
-time.sleep(2)
-print("You currently have $1200, from working a minimum wage job to feed your gambling addiction.")
+def countdown():
+  pause2()
+  print("You have bet $"+str(bet)+" on car #"+str(car)+".")
+  print()
+  pause2()
+  print("3")
+  pause()
+  print("2")
+  pause()
+  print("1")
+  pause()
+  print("Go!")
 
-time.sleep(2)
-bet = int(input("How much would you like to bet? "))
-
-time.sleep(2)
-print("You have bet $"+str(bet)+" on car #"+str(car)+".")
-print()
-
-time.sleep(2)
-print("3")
-
-time.sleep(1)
-print("2")
-
-time.sleep(1)
-print("1")
-
-time.sleep(1)
-print("Go!")
-
-winner = random.randint(1,6)
-
-if winner == car:
+def winner():
   winner = random.randint(1,6)
+  if winner == car:
+    winner = random.randint(1,6)
 
-time.sleep(1)
+def announcement():
+  print("The winner is car number...")
+  pause()
+  print(".")
+  pause()
+  print(".")
+  pause()
+  print(".")
+  pause()
+  print(str(winner)+"!")
+
+def profit():
+  if winner == car:
+    print("You have won $"+str(bet*2)+".")
+    print("You now have $"+str(money+bet)+".")
+  else:
+    print("You have lost $"+str(bet)+". Did you know that 90% of gamblers quit right before their big win?")
+#The actual game, using all the functions.
+illusionofchoice()
+
+sadly()
+
+car()
+
+colour()
+
+pause2()
+pause()
+
+betinfo()
+
+pause2()
+
+bet()
+
+countdown()
+
+winner()
+
+pause()
 print()
 
-print("The winner is car number...")
+announcement()
 
-time.sleep(1)
-print(".")
-
-time.sleep(1)
-print(".")
-
-time.sleep(1)
-print(".")
-
-time.sleep(1)
-print(str(winner)+"!")
+pause()
+profit()
